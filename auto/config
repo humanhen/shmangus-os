@@ -1,0 +1,19 @@
+#!/bin/sh
+# live-build configuration for Shmangus OS.
+# Run via `lb config` (called automatically by build.sh / CI).
+set -e
+
+lb config noauto \
+    --distribution bookworm \
+    --architectures amd64 \
+    --archive-areas "main contrib non-free non-free-firmware" \
+    --binary-images iso-hybrid \
+    --debian-installer live \
+    --debian-installer-gui true \
+    --image-name "shmangus-os" \
+    --iso-application "Shmangus OS" \
+    --iso-publisher "Shmangus OS Project; https://github.com/humanhen/shmangus-os" \
+    --iso-volume "SHMANGUS_OS" \
+    --memtest none \
+    --bootappend-live "boot=live components username=shmangus hostname=shmangus quiet splash" \
+    "${@}"

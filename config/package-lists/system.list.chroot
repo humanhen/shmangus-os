@@ -1,0 +1,36 @@
+# Kernel and firmware so the live system boots on real hardware
+linux-image-amd64
+firmware-linux
+firmware-linux-nonfree
+firmware-iwlwifi
+firmware-realtek
+firmware-atheros
+intel-microcode
+amd64-microcode
+
+# Live system plumbing
+live-boot
+live-config
+live-config-systemd
+
+# Base utilities
+sudo
+curl
+wget
+git
+vim
+htop
+neofetch
+zip
+unzip
+gnupg
+ca-certificates
+bash-completion
+locales
+console-setup
+
+# Filesystems / disks
+gparted
+dosfstools
+ntfs-3g
+exfatprogs

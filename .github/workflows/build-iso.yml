@@ -1,0 +1,41 @@
+name: Build Shmangus OS ISO
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: debian:bookworm
+      options: --privileged
+    steps:
+      - name: Install build dependencies
+        run: |
+          apt-get update
+          DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
+            live-build debootstrap xorriso squashfs-tools mtools dosfstools \
+            ca-certificates git
+
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build ISO
+        run: |
+          lb clean
+          lb config
+          lb build
+
+      - name: Checksums
+        run: sha256sum shmangus-os-*.iso > SHA256SUMS
+
+      - name: Upload ISO
+        uses: actions/upload-artifact@v4
+        with:
+          name: shmangus-os-iso
+          path: |
+            shmangus-os-*.iso
+            SHA256SUMS
+          retention-days: 14

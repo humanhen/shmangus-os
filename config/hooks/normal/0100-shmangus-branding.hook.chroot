@@ -1,0 +1,45 @@
+#!/bin/sh
+# Rebrand the base Debian system as Shmangus OS.
+# Runs inside the chroot near the end of the build.
+set -e
+
+VERSION="1.0"
+CODENAME="Big Shmang"
+
+cat > /etc/os-release <<EOF
+PRETTY_NAME="Shmangus OS ${VERSION} (${CODENAME})"
+NAME="Shmangus OS"
+VERSION_ID="${VERSION}"
+VERSION="${VERSION} (${CODENAME})"
+VERSION_CODENAME=bigshmang
+ID=shmangus
+ID_LIKE=debian
+HOME_URL="https://github.com/humanhen/shmangus-os"
+SUPPORT_URL="https://github.com/humanhen/shmangus-os/issues"
+BUG_REPORT_URL="https://github.com/humanhen/shmangus-os/issues"
+EOF
+
+cat > /etc/issue <<EOF
+Shmangus OS ${VERSION} (${CODENAME}) \\n \\l
+
+EOF
+
+cat > /etc/issue.net <<EOF
+Shmangus OS ${VERSION} (${CODENAME})
+EOF
+
+cat > /etc/lsb-release <<EOF
+DISTRIB_ID=ShmangusOS
+DISTRIB_RELEASE=${VERSION}
+DISTRIB_CODENAME=bigshmang
+DISTRIB_DESCRIPTION="Shmangus OS ${VERSION} (${CODENAME})"
+EOF
+
+# Static MOTD is replaced by the dynamic one in /etc/update-motd.d
+rm -f /etc/motd
+
+# Wire the wallpaper in as the XFCE default so it applies to any monitor
+# name, not just the ones hard-coded in the skel config.
+if [ -f /usr/share/backgrounds/xfce/xfce-x.svg ]; then
+    cp /usr/share/backgrounds/shmangus/shmangus.svg /usr/share/backgrounds/xfce/xfce-x.svg
+fi

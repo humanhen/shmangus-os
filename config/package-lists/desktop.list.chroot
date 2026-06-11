@@ -1,0 +1,27 @@
+# XFCE desktop environment and display manager
+xfce4
+xfce4-terminal
+xfce4-power-manager
+lightdm
+light-locker
+
+# Graphics / rendering support (librsvg so the SVG wallpaper renders)
+librsvg2-common
+xdg-utils
+
+# Networking
+network-manager
+network-manager-gnome
+
+# Audio
+pipewire
+pipewire-pulse
+wireplumber
+pavucontrol
+
+# Apps
+firefox-esr
+thunar-archive-plugin
+xarchiver
+mousepad
+ristretto

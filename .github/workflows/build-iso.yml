@@ -16,7 +16,8 @@ jobs:
         run: |
           apt-get update
           DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
-            live-build debootstrap xorriso squashfs-tools mtools dosfstools \
+            live-build debootstrap debian-archive-keyring \
+            xorriso squashfs-tools mtools dosfstools \
             ca-certificates git
 
       - name: Checkout

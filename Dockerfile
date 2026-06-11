@@ -5,6 +5,7 @@ RUN apt-get update && \
     DEBIAN_FRONTEND=noninteractive apt-get install -y --no-install-recommends \
         live-build \
         debootstrap \
+        debian-archive-keyring \
         xorriso \
         squashfs-tools \
         mtools \

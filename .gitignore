@@ -11,8 +11,7 @@ build.log
 .build/
 cache/
 chroot/
-chroot.files
-chroot.packages
+chroot.*
 binary/
 binary.modified_timestamps
 local/
